@@ -7,6 +7,8 @@ Env: Python 3.8.5
 
 
 ### Create Virtual Environment
+>The purpose of a Python virtual environments is to allow one to create multiple distinct Python environments for the same version of Python, but with different sets of Python modules and packages installed. It is recommended that you always use Python virtual environments and not install additional Python packages direct into your Python installation.
+
 1. Install virtualenv
 ```
 > pip install virtualenv
