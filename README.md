@@ -19,6 +19,7 @@ $ deactivate
 
 # Install Python dependencies
 > pip3 install flask gunicorn requests
+
 ※ Since Gunicorn is for a UNIX environment and is incompatible with Windows,
 I will use waitress instead of gunicorn
 > pip3 install flask waitress requests
