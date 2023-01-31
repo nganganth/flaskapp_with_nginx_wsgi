@@ -15,10 +15,11 @@ OS: Windows
 > myenv\Scripts\activate
 
 4. Deactivate it
-$ deactivate
+> $ deactivate
 
 # Install Python dependencies
 > pip3 install flask gunicorn requests
+
 ※ Since Gunicorn is for a UNIX environment and is incompatible with Windows,
 I will use waitress instead of gunicorn
 > pip3 install flask waitress requests
@@ -26,7 +27,6 @@ I will use waitress instead of gunicorn
 
 # Test Waitress's ability
 > waitress-serve --listen=127.0.0.1:5000 wsgi:app
-
 
 # Install Nginx
 1. Download nginx version for Windows
