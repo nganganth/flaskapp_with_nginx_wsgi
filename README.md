@@ -15,7 +15,7 @@ OS: Windows
 > myenv\Scripts\activate
 
 4. Deactivate it
-$ deactivate
+> $ deactivate
 
 # Install Python dependencies
 > pip3 install flask gunicorn requests
