@@ -1,47 +1,64 @@
 # flaskapp_with_nginx_wsgi
-a web application using Flask framework with Nginx Nginx web server and WSGI
+a web application using Flask framework with Nginx web server and WSGI
 
 OS: Windows
 
+Env: Python 3.8.5
 
-#Create Virtual Environment
+
+### Create Virtual Environment
 1. Install virtualenv
+```
 > pip install virtualenv
+```
 
 2. Create a virtualenv in which ever directory you are
+```
 > virtualenv myenv
+```
 
 3. By using the below command to activate it and then you are in a Python virtual environment
+```
 > myenv\Scripts\activate
+```
 
 4. Deactivate it
+```
 > $ deactivate
+```
 
-# Install Python dependencies
+### Install Python dependencies
+```
 > pip3 install flask gunicorn requests
+```
 
-※ Since Gunicorn is for a UNIX environment and is incompatible with Windows,
-I will use waitress instead of gunicorn
+*Since Gunicorn is for a UNIX environment and is incompatible with Windows, I will use waitress instead of gunicorn*
+```
 > pip3 install flask waitress requests
+```
 
-
-# Test Waitress's ability
+### Test Waitress's ability
+```
 > waitress-serve --listen=127.0.0.1:5000 wsgi:app
+```
 
-# Install Nginx
+### Install Nginx
 1. Download nginx version for Windows
+```
 https://nginx.org/en/download.html
+```
 
 2. Unzip folder and execute nginx.exe
 3. Go to http://localhost/ and we should see the "Welcome to Nginx" default page. If we see that page, then we can be sure that Nginx has been installed properly.
 
-# Configure Nginx
+### Configure Nginx
 According to Waitress documentation:
 > unix_socket Path of Unix socket(string). If a socket path is specified, a Unix domain socket is made instead of the usual inet domain socket
 > Not available on Windows
+
 Because of that, instead of running it from a named pipe you can run it in a local port and reverse proxy that port with nginx.
 
-
+```
 location / {
     proxy_pass http://127.0.0.1:5000;
     proxy_set_header Host $host;
@@ -49,11 +66,16 @@ location / {
     proxy_set_header X-Forwarded-Host $host:$server_port;
     proxy_set_header X-Forwarded-Port $server_port;
 }
+```
 
-* stop and restart after updating nginx.conf in order to reflex the changes
+###### Restart Nginx
+Stop and restart after updating nginx.conf in order to reflect the changes
+```
 > nginx.exe -s quit
+```
 or 
+
 Go to Task Manager and end nginx.exe running processes
 
-# Result
+### Result
 Go to http://localhost/ and we can see the running flask application (http://localhost:5000)
